@@ -1,11 +1,11 @@
 # Use the Java development container as base
-FROM mcr.microsoft.com/devcontainers/java:1-17-bookworm
+FROM "mcr.microsoft.com/devcontainers/base:jammy"
 
 # Set Debian frontend to noninteractive
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Update and install necessary packages
-RUN apt-get update && apt-get install -y git wget unzip
+RUN apt-get update && apt-get install -y git wget unzip openjdk-17-jdk
 
 # Switch to 'developer' user before cloning and configuring Flutter
 USER vscode
@@ -27,7 +27,7 @@ ENV ANDROID_HOME=/sdk/android
 ENV PATH="${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools:${PATH}"
 
 # Install Android SDK tools
-RUN yes | sdkmanager "platform-tools" "platforms;android-33" "build-tools;33.0.1"
+RUN yes | sdkmanager "platform-tools" "platforms;android-33" "build-tools;33.0.1" "emulator"
 
 # Clone Flutter SDK and configure Git for safe directory
 RUN git clone https://github.com/flutter/flutter.git -b stable --depth 1 /sdk/flutter && \
