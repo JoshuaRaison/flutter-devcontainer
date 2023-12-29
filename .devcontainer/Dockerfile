@@ -24,7 +24,7 @@ RUN mkdir -p /sdk/android/cmdline-tools && \
 ENV ANDROID_HOME=/sdk/android
 
 # Add Android SDK tools to the PATH
-ENV PATH="${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools:${PATH}"
+ENV PATH="${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/emulator:${PATH}"
 
 # Install Android SDK tools
 RUN yes | sdkmanager "platform-tools" "platforms;android-33" "build-tools;33.0.1" "emulator"
